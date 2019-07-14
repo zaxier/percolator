@@ -4,6 +4,7 @@ import random
 import sys
 from union import Union
 
+
 class Grid:
 
     def __init__(self, size):
@@ -12,7 +13,6 @@ class Grid:
         self.matrix = [[random.randint(0,1) for i in range(size)] for x in range(size)]
         self.flatmatrix = [item for sublist in self.matrix for item in sublist]
 
-
     def get_zeroes(self):
         zeroes = []
         for i, val in enumerate(self.flatmatrix):
@@ -20,13 +20,11 @@ class Grid:
                 zeroes.append(i)
         return zeroes
 
-    
     def connect_zeroes(self):
        zeroes = []
        for i, val in enumerate(self.flatmatrix):
            if val == 0:
                zeroes.append(i)
-
 
     def toString(self):
         graph = []
