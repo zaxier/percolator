@@ -1,18 +1,19 @@
 #! /home/xavier/anaconda3/envs/first_env/bin/python
 
-import random
+from scipy.stats import beta
+import seaborn as sns
 from union import Union
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 class Grid:
 
-    def __init__(self, size):
-        empty_cell_prob = np.random.beta(2, 2)
-        print(empty_cell_prob)
+    def __init__(self, size, empty_prob=0.5):
         self.size = size
         self.elements = Union(size * (size + 1))
-        self.matrix = [[random.randint(0, 1) for i in range(size)] for x in range(size)]
+        self.matrix = [list(np.random.choice([0, 1], size, p=[empty_prob, 1-empty_prob])) for x in range(size)]
+        # self.matrix = [[random.randint(0, 1) for i in range(size)] for x in range(size)]
         for row in self.matrix:
             row.append(1)
         self.flatmatrix = [item for sublist in self.matrix for item in sublist]
@@ -49,6 +50,23 @@ class Grid:
 
 
 if __name__ == '__main__':
-    grid = Grid(12)
-    grid.toString()
-    print(grid.determine_percolation())
+    r = beta.rvs(2, 2, size=1000)
+    r = np.around(r, 2)
+    tot = 0
+    perc = np.empty(0)
+    prob = np.empty(0,dtype=bool)
+    for each in r:
+        prob = np.append(prob, each)
+        grid = Grid(10, each)
+        tot += 1
+        perc = np.append(perc, grid.determine_percolation())
+    print(sum(perc))
+    # xprob = np.arange(0, 1.01, 0.01)
+    sns.regplot(x=prob, y=perc, logistic=True, scatter_kws={'alpha':0.1, 'color': 'green'}, line_kws={'color':'green'})
+    # Need to go through the probabilities and calculate the likelihood that it's a 0 or a 1
+    # fig, ax = plt.subplots()
+    # ax.scatter(prob, perc, alpha=0.1)
+    plt.title("Percolation")
+    plt.xlabel('Probability of each cell being empty')
+    plt.ylabel('Probability of Percolating')
+    plt.show()
