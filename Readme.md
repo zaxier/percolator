@@ -44,6 +44,7 @@ class Union:
 ```python
 class Grid:
 
+
     def __init__(self, size, empty_prob=0.5):
         self.size = size
         self.elements = Union(size * (size + 1))
@@ -55,6 +56,7 @@ class Grid:
         self.connect_zeroes()
         self.determine_percolation()
 
+
     def connect_zeroes(self):
         for i, val in enumerate(self.flatmatrix[:-1]):
             if val == 0 and val == self.flatmatrix[i + 1]:
@@ -63,6 +65,7 @@ class Grid:
             if val == 0 and val == self.flatmatrix[i + self.size + 1]:
                 self.elements.union(i, i + self.size + 1)
 
+
     def determine_percolation(self):
         toprow = set(self.elements.id[:self.size])
         bottomrow = set(self.elements.id[-(self.size + 1): -1])
@@ -70,6 +73,7 @@ class Grid:
             return True
         else:
             return False
+
 
     def toString(self):
         graph = []

@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 
 class Grid:
 
+
     def __init__(self, size, empty_prob=0.5):
         self.size = size
         self.elements = Union(size * (size + 1))
@@ -26,6 +27,7 @@ class Grid:
             if val == 0 and val == self.flatmatrix[i + self.size + 1]:
                 self.elements.union(i, i + self.size + 1)
 
+
     def determine_percolation(self):
         toprow = set(self.elements.id[:self.size])
         bottomrow = set(self.elements.id[-(self.size + 1): -1])
@@ -33,6 +35,7 @@ class Grid:
             return True
         else:
             return False
+
 
     def toString(self):
         graph = []
@@ -59,7 +62,6 @@ if __name__ == '__main__':
         grid = Grid(grid_size, each)
         tot += 1
         perc = np.append(perc, grid.determine_percolation())
-    print(sum(perc))
     sns.regplot(x=prob, y=perc, logistic=True, scatter_kws={'alpha':0.1, 'color': 'green'}, line_kws={'color':'green'})
     plt.title("Percolation")
     plt.xlabel('Probability of each cell being empty')
