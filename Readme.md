@@ -98,12 +98,8 @@ if __name__ == '__main__':
         perc = np.append(perc, grid.determine_percolation())
     fig, ax = plt.subplots(figsize=(15,11))
     sns.regplot(x=prob, y=perc, logistic=True, scatter_kws={'alpha':0.1, 'color': 'green'}, line_kws={'color':'green'})
-    # Need to go through the probabilities and calculate the likelihood that it's a 0 or a 1
-    # fig, ax = plt.subplots()
-    # ax.scatter(prob, perc, alpha=0.1)
     print("Example Lattice")
     grid.toString()
-    p
     plt.title("Percolation Lattice Percolation vs Occupiend", fontsize=20)
     plt.xlabel('Probability of each cell being empty', fontsize=18)
     plt.ylabel('Probability of Percolating', fontsize=18)
