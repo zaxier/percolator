@@ -1,5 +1,3 @@
-#! /home/xavier/anaconda3/envs/first_env/bin/python
-
 from scipy.stats import beta
 import seaborn as sns
 from union import Union
@@ -50,6 +48,7 @@ class Grid:
 
 
 if __name__ == '__main__':
+    grid_size = 10
     r = beta.rvs(2, 2, size=1000)
     r = np.around(r, 2)
     tot = 0
@@ -57,15 +56,11 @@ if __name__ == '__main__':
     prob = np.empty(0,dtype=bool)
     for each in r:
         prob = np.append(prob, each)
-        grid = Grid(10, each)
+        grid = Grid(grid_size, each)
         tot += 1
         perc = np.append(perc, grid.determine_percolation())
     print(sum(perc))
-    # xprob = np.arange(0, 1.01, 0.01)
     sns.regplot(x=prob, y=perc, logistic=True, scatter_kws={'alpha':0.1, 'color': 'green'}, line_kws={'color':'green'})
-    # Need to go through the probabilities and calculate the likelihood that it's a 0 or a 1
-    # fig, ax = plt.subplots()
-    # ax.scatter(prob, perc, alpha=0.1)
     plt.title("Percolation")
     plt.xlabel('Probability of each cell being empty')
     plt.ylabel('Probability of Percolating')
