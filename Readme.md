@@ -2,17 +2,17 @@
 
 In statistical physics and mathematics, percolation theory describes the behaviour of connected clusters in a random graph [https://en.wikipedia.org/wiki/Percolation_theory]. 3-d example:
 
-![img](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Perc-wiki.png/220px-Perc-wiki.png)
+![img](./220px-Perc-wiki.png)
 
-The problem represents the question of weather a liquid will be able to make its way from hole to hole and reach the bottom of some porous material. The code below models this problem in a two-dimensional network (aka lattice) of $n \times n$ vertices, in which the bonds between each of the neighbours may be open with probability $p$, or closed with probability $1-p$ . Therefore, for a given $p$, what is the probability that an open path exists from top to bottom.
+The problem represents the question of weather a liquid will be able to make its way from hole to hole and reach the bottom of some porous material. The code below models this problem in a two-dimensional network (aka lattice) of *n \* n* vertices, in which the bonds between each of the neighbours may be open with probability *p*, or closed with probability *1-p* . Therefore, for a given *p​*, what is the probability that an open path exists from top to bottom.
 
-My implementation uses a union-find data structure to model the bonds between open "sites" or "cells" for variable square lattices of size $n \times n$. For each 2-d lattice the value $p$ is drawn from a beta distribution with variables $\alpha=2$ | $\beta=2$ in order to increase number of instances in the sample that surround the threshold value in the two-dimensional case $p=0.592746$ 
+My implementation uses a union-find data structure to model the bonds between open "sites" or "cells" for variable square lattices of size *n \* n​*. For each 2-d lattice the value *p* is drawn from a beta distribution with variables *a=2 | b=2* in order to increase number of instances in the sample that surround the threshold value in the two-dimensional case *p=0.592746*
 
-![1570252951808](/home/xavier/.config/Typora/typora-user-images/1570252951808.png)
+![1570252951808](./beta.png)
 
 
 
-The code below simulates a set of random $n \times n$ lattice with $pn^2$ bonds and determines if the lattice "percolates", the boolean result is stored and plotted graphically with the probability of percolating for each value of $p$.
+The code below simulates a set of random *n \* n* lattice with *pn^2​* bonds and determines if the lattice "percolates", the boolean result is stored and plotted graphically with the probability of percolating for each value of *p​*.
 
 
 
